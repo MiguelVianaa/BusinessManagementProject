@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'EmpreGest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nome',
-        'USER': 'usuario',
-        'PASSWORD': 'password',
-        'HOST': 'host',
-        'PORT': 'port',
+        'NAME': 'empre_gest',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

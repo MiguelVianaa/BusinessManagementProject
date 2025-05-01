@@ -5,7 +5,6 @@ Gestão de Empresas é um projeto desenvolvido como parte da aprendizagem do fra
 
 | Relações                     | Descrição                                                 |
 |------------------------------|-----------------------------------------------------------|
-| (N:M) Empresa <-> Setor      | Muitas empresas podem ter muitos setores.                 |
 | (1:N) Empresa <- Colaborador | Uma empresa pode ter muitos colaboradores.                |
 | (N:1) Colaborador -> Empresa | Muitos colaboradores podem trabalhar em uma empresa.      |
 | (1:N) Cargo <- Colaborador   | Um cargo pode pertencer a muitos colaboradores.           |
