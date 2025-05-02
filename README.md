@@ -1,51 +1,64 @@
-# Projeto Gestão De Empresas
-Gestão de Empresas é um projeto desenvolvido como parte da aprendizagem do framework Django. O objetivo é facilitar a administração de empresas, permitindo o cadastro e a gestão de empresas, colaboradores, setores e cargos de forma organizada.
+# Framework Django - Projeto Gestão De Empresas
+Gestão de Empresas é um projeto desenvolvido como parte da aprendizagem do framework Django. Seu objetivo é aplicar na prática os conhecimentos adquiridos sobre o framework, criando um software voltado para a administração empresarial. A ferramenta permite o cadastro e a gestão de empresas, colaboradores, setores e cargos de maneira organizada, tornando a administração mais eficiente e estruturada.
 
-### Gestão de Empresas:
-
-| Relações                     | Descrição                                                 |
-|------------------------------|-----------------------------------------------------------|
-| (1:N) Empresa <- Colaborador | Uma empresa pode ter muitos colaboradores.                |
-| (N:1) Colaborador -> Empresa | Muitos colaboradores podem trabalhar em uma empresa.      |
-| (1:N) Cargo <- Colaborador   | Um cargo pode pertencer a muitos colaboradores.           |
-| (N:1) Colaborador -> Cargo   | Muitos colaboradores podem ter somente um cargo.          |
-| (N:1) Colaborador -> Setor   | Muitos colaboradores podem trabalhar em somente um setor. |
-| (1:N) Setor <- Colaborador   | Um setor pode ser composto por vários colaboradores.      |
+<hr/>
 
 ## Descrição:
 
 ### **Home**
-Na página inicial, você pode navegar para realizar os seguintes cadastros:
+Na página inicial, você pode navegar para realizar os seguintes fluxos:
 - **Empresas**
 - **Colaboradores**
 - **Setores**
 - **Cargos**
 
 ### **Empresas**
-No cadastro de empresas, além de todos os campos que o copoe, a listagem, edição e exclusão das empresas,
-também é gerenciado o vínculo de cada coisa, quais setores vão ter naquela empresa, estando disponivel todos
-os que foram cadastrados no fluxo de setores, quais colaboradores vao trabalhar naquele setor dentro daquela
-empresa, e que cargos aqueles colaboradores vão ter,um colaborador pode ter um cargo por exemplo de um Gestor do setor,
-ou ser um colaborador de um outro cargo mais abaixo disso dentro daquele setor. tudo isso será gerenciavel no 
-fluxo de empresas,
+O módulo de **Empresas** permite o cadastro, listagem, edição e exclusão de empresas, além de gerenciar suas interações com setores, colaboradores e cargos. Dentro de cada empresa, é possível:
+- Definir quais **setores** estarão disponíveis, escolhendo entre aqueles cadastrados no fluxo de setores.
+- Vincular **colaboradores** a setores específicos da empresa.
+- Atribuir **cargos** aos colaboradores dentro dos setores da empresa. Um colaborador pode ocupar um cargo de liderança, como **Gestor de Setor**, ou desempenhar outra função dentro da estrutura organizacional.
+
+Todo esse gerenciamento ocorre no fluxo de **Empresas**, garantindo uma estrutura flexível para acomodar diferentes hierarquias e organizações.
 
 ### **Colaboradores**
-Colaboradores é o fluxo onde os mesmos são cadastrados e exibidos na listagem, posso gerencia-los
-com edição e exclusão, eles são utilizados na empresas, lá onde será vinculado o mesmo a um setor
-e também a um cargo.
+O módulo de **Colaboradores** permite o cadastro, listagem, edição e exclusão de colaboradores. Os colaboradores cadastrados podem ser vinculados a:
+- **Empresas**, onde irão trabalhar.
+- **Setores**, dentro das empresas.
+- **Cargos**, que serão atribuídos a cada colaborador dentro do setor em que atuam.
+
+Essa estrutura facilita o gerenciamento dos profissionais e a definição clara de suas responsabilidades dentro da organização.
 
 ### **Setores**
-Os setores conta com o cadastro listagem e podem ser gerenciados com edição e exclusão, são
-utilizados nas empresas como uma opção de multi-seleção para várias empresas, serve para
-ser vinculados a várias empresas, e como um grupo de vários colaboradores, colaboradores estes
-que só podem trabalhar em um grupo de setores, com determinado cargo e em  uma determinada empresa.
+Os **Setores** contam com funcionalidades de cadastro, listagem, edição e exclusão. Eles podem ser vinculados a múltiplas empresas e servem como agrupamentos de colaboradores. Algumas características desse módulo incluem:
+- **Multi-seleção**, permitindo que setores sejam utilizados em diversas empresas.
+- Os colaboradores só podem atuar dentro de setores específicos, de acordo com seus cargos e a empresa à qual estão vinculados.
+
+Isso torna o fluxo de **Setores** essencial para estruturar departamentos dentro de cada empresa.
 
 ### **Cargos**
-Os cargos da mesma forma, utilizados no cadastro e edição de empresas, para serem atribuídos a um
-colaborador, o mesmo só pode ser atribuído se o colaborador já estiver vinculádo a uma empresa e a um
-setor, ou seja, dentro daquela empresa, e dentro daquele setor, aquele colaborador vai ter aquele cargo,
-por exemplo, o "Marcos", que trabalha na empresa "Mateus Borges Auto Peças LTDA" com o cargo de "Gestor da 
-equipe de mecânicos elétricistas"
+Os **Cargos** funcionam como a peça final da estrutura organizacional. Eles são cadastrados e utilizados no módulo de **Empresas** e podem ser atribuídos a colaboradores dentro dos setores em que atuam. Um cargo só pode ser atribuído a um colaborador que:
+- Já esteja vinculado a uma **empresa**.
+- Já tenha sido vinculado a um **setor** dentro dessa empresa.
+
+Isso garante que cada colaborador tenha um papel bem definido, como no caso de **Marcos**, que trabalha na empresa **Mateus Borges Auto Peças LTDA** com o cargo de **Gestor da equipe de mecânicos eletricistas**
+
+<hr/>
+
+## Relacionamentos e Banco de dados:
+
+### **Empresas ↔ Setores:**
+- **Relacionamento muitos-para-muitos, implementado pela tabela Empresa_Setor.**
+- **Exemplo: A empresa "Mateus Borges Auto Peças LTDA" pode ter os setores "Mecânica Eletricista" e "Vendas".**
+
+### **Colaboradores → Empresas, Setores, Cargos:**
+
+- **A tabela Colaborador_Setor_Cargo vincula um colaborador a uma empresa, um setor e um cargo.**
+- **Garante que um colaborador só possa ser associado a um setor que existe na empresa (validação via Empresa_Setor) e a um cargo válido.**
+- **Exemplo: Marcos é vinculado à empresa "Mateus Borges Auto Peças LTDA", ao setor "Mecânica Eletricista" e ao cargo "Gestor da Equipe"**
+
+<hr/>
+
+### Colunas do banco:
 
 **Empresas:**
 * id
