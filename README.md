@@ -14,34 +14,38 @@ Gestão de Empresas é um projeto desenvolvido como parte da aprendizagem do fra
 
 ## Descrição:
 
-### **Página Home**
+### **Home**
 Na página inicial, você pode navegar para realizar os seguintes cadastros:
 - **Empresas**
 - **Colaboradores**
 - **Setores**
 - **Cargos**
 
-### **Página de Empresas**
-Na página de empresas, é possível:
-1. Cadastrar uma nova empresa.
-2. Vincular colaboradores à empresa durante o cadastro ou edição da empresa.
-3. Associar setores à empresa cadastrada.
-4. Definir cargos para os colaboradores vinculados à empresa.
+### **Empresas**
+No cadastro de empresas, além de todos os campos que o copoe, a listagem, edição e exclusão das empresas,
+também é gerenciado o vínculo de cada coisa, quais setores vão ter naquela empresa, estando disponivel todos
+os que foram cadastrados no fluxo de setores, quais colaboradores vao trabalhar naquele setor dentro daquela
+empresa, e que cargos aqueles colaboradores vão ter,um colaborador pode ter um cargo por exemplo de um Gestor do setor,
+ou ser um colaborador de um outro cargo mais abaixo disso dentro daquele setor. tudo isso será gerenciavel no 
+fluxo de empresas,
 
-**Obs.:**
-    Não é obrigatório preencher imediatamente o setor ou cargo de um colaborador.
-    Essa associação pode ser realizada posteriormente.
+### **Colaboradores**
+Colaboradores é o fluxo onde os mesmos são cadastrados e exibidos na listagem, posso gerencia-los
+com edição e exclusão, eles são utilizados na empresas, lá onde será vinculado o mesmo a um setor
+e também a um cargo.
 
-### **Página de Colaboradores**
-Na página de colaboradores, além de cadastrar ou editar as informações dos mesmos, é possível alterar ou adicionar vínculos do colaborador com **empresas, setores ou cargos**, de forma flexível, conforme necessário.
+### **Setores**
+Os setores conta com o cadastro listagem e podem ser gerenciados com edição e exclusão, são
+utilizados nas empresas como uma opção de multi-seleção para várias empresas, serve para
+ser vinculados a várias empresas, e como um grupo de vários colaboradores, colaboradores estes
+que só podem trabalhar em um grupo de setores, com determinado cargo e em  uma determinada empresa.
 
-### **Página de Setores**
-O cadastro e a edição de setores são simples e diretos.
-Basta preencher os campos necessários para que o setor seja utilizado no fluxo.
-
-### **Página de Cargos**
-Assim como na página de setores, o cadastro de cargos é prático e intuitivo.
-Permite definir os cargos que serão utilizados posteriormente no fluxo.
+### **Cargos**
+Os cargos da mesma forma, utilizados no cadastro e edição de empresas, para serem atribuídos a um
+colaborador, o mesmo só pode ser atribuído se o colaborador já estiver vinculádo a uma empresa e a um
+setor, ou seja, dentro daquela empresa, e dentro daquele setor, aquele colaborador vai ter aquele cargo,
+por exemplo, o "Marcos", que trabalha na empresa "Mateus Borges Auto Peças LTDA" com o cargo de "Gestor da 
+equipe de mecânicos elétricistas"
 
 **Empresas:**
 * id
