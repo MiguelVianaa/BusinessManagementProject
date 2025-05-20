@@ -1,0 +1,100 @@
+body {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #f6f6f6;
+}
+
+/* Centraliza e limita o tamanho da div principal */
+.div_principal {
+    margin: 40px auto;
+    padding: 24px 32px;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabecalho {
+    text-align: center;
+}
+
+.cadastro {
+    margin: 8% auto;
+    font-size: 19px;
+    width: 90%;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Limita a largura da tabela ao conteúdo */
+.empresas-table {
+    width: auto;
+    min-width: 400px;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Quebra de texto nas células */
+.empresas-table th, .empresas-table td {
+    border: 1px solid #bbb;
+    padding: 8px 12px;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 220px;
+}
+
+.empresas-table th {
+    background-color: #f2f2f2;
+    color: #222;
+}
+
+.empresas-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.empresas-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Botão cadastrar estilizado */
+.btn-cadastrar {
+    display: inline-block;
+    margin-bottom: 12px;
+    align-self: flex-end;
+    background-color: #1976d2;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-cadastrar:hover {
+    background-color: #125ba1;
+}
+
+@media (max-width: 600px) {
+    .div_principal {
+        max-width: 97vw;
+        padding: 12px 4vw;
+    }
+    .empresas-table, .empresas-table th, .empresas-table td {
+        font-size: 14px;
+        min-width: unset;
+        max-width: unset;
+    }
+}
