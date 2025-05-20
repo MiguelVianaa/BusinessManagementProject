@@ -86,7 +86,9 @@ body {
 .btn-cadastrar:hover {
     background-color: #125ba1;
 }
-
+.div_principal {
+    position: relative;
+}
 @media (max-width: 600px) {
     .div_principal {
         max-width: 97vw;
@@ -96,5 +98,33 @@ body {
         font-size: 14px;
         min-width: unset;
         max-width: unset;
+    }
+}
+.btn-voltar {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    background: none;
+    color: #1976d2;
+    font-size: 1rem;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.btn-voltar:hover {
+    background: #e3edfa;
+    color: #125ba1;
+}
+@media (max-width: 800px) {
+    .btn-voltar {
+        top: 10px;
+        left: 10px;
     }
 }

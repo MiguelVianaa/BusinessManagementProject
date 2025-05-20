@@ -5,35 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/empresas/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/empresas/form.css' %}?v={{ request.timestamp }}">
     <title>Document</title>
 </head>
-    <body>
+<body>
+    <div class="div_principal">
+        <a href="{% url 'empresas' %}" class="btn-voltar" title="Voltar para listagem">&#8592; Voltar</a>
+        <h2 class="cabecalho">Empresas</h2>
+        <h3>Cadastro</h3>
         <form action="{% url 'store' %}">
-            <div class="div_principal">
-                <h2>Empresas</h2>
-                <h3>Cadastro</h3>
-                <label>
-                    Nome da Empresa
+
+            <div class="form-row form-row--2col">
+                <label for="nome">Nome da Empresa
                     <input name="nome" type="text" placeholder="Nome da empresa">
                 </label>
-                <label>
-                    Razão Social
+                <label for="razao_social">Razão Social
                     <input name="razao_social" type="text" placeholder="Razão Social">
                 </label>
-                <label>
-                    CNPJ
+                <label for="cnpj">CNPJ
                     <input name="cnpj" type="text" placeholder="CNPJ" maxlength="14">
                 </label>
-                <label>
-                    Telefone
+            </div>
+
+            <div class="form-row form-row--3col">
+                <label for="inscricao_estadual">IE
+                    <input type="text" name="inscricao_estadual" placeholder="Inscrição Estadual">
+                </label>
+                <label for="telefone">Telefone
                     <input name="telefone" type="text" placeholder="Telefone">
                 </label>
-                <label>
-                    E-mail
+                <label for="email">E-mail
                     <input name="email" type="text" placeholder="Email">
                 </label>
             </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Salvar</button>
+            </div>
+
         </form>
-    </body>
+    </div>
+</body>
 </html>

@@ -5,21 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/empresas/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/empresas/index.css' %}?v={{ request.timestamp }}">
     <title>Empresas</title>
 </head>
 <body>
     <div class="div_principal">
+    <a href="{% url 'home' %}" class="btn-voltar" title="Voltar para Home">&#8592; Voltar</a>
         <h2 class="cabecalho">Empresas</h2>
         <h3 style="text-align: center">Listagem</h3>
-{#        <ul>#}
-{#            {% for empresa in empresas %}#}
-{#            <li> {{ empresa.nome }}</li>#}
-{#            {% empty %}#}
-{#                <li> Nenhuma empresa cadastrada. </li>#}
-{#            {% endfor %}#}
-{#        </ul>#}
-
         <table class="empresas-table">
             <tr>
                 <th>Nome</th>
