@@ -22,7 +22,7 @@
 
             {% csrf_token %}
             <div class="form-row form-row--2col">
-                <label for="nome">Nome da Empresa
+                <label for="nome">Nome Fantasia
                     <input name="nome" type="text" placeholder="Nome da empresa">
                     {% if form.nome.errors %}
                         <div class="form-error">{{ form.nome.errors.0 }}</div>
@@ -34,15 +34,6 @@
                         <div class="form-error">{{ form.razao_social.errors.0 }}</div>
                     {% endif %}
                 </label>
-            </div>
-
-            <div class="form-row form-row--2col">
-                <label for="endereco">Endereço
-                    <input name="endereco" type="text" placeholder="Endereço">
-                    {% if form.endereco.errors %}
-                        <div class="form-error">{{ form.endereco.errors.0 }}</div>
-                    {% endif %}
-                </label>
                 <label for="cnpj">CNPJ
                     <input name="cnpj" type="text" placeholder="CNPJ" maxlength="14">
                     {% if form.cnpj.errors %}
@@ -51,7 +42,7 @@
                 </label>
             </div>
 
-            <div class="form-row form-row--3col">
+            <div class="form-row form-row--2col">
                 <label for="inscricao_estadual">IE
                     <input type="text" name="inscricao_estadual" placeholder="Inscrição Estadual">
                     {% if form.inscricao_estadual.errors %}
