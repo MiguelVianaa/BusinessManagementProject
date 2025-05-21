@@ -39,3 +39,15 @@ def valida_inscricao_estadual(inscricao_estadual):
         raise ValidationError('A inscrição estadual deve ter no máximo 20 caracteres!')
     if len(set(inscricao)) == 1:
         raise ValidationError('A inscrição estadual não pode conter apenas números repetidos!')
+
+def valida_telefone(telefone):
+    if len(telefone) < 10:
+        raise ValidationError('O telefone deve ter pelo menos 10 caracteres!')
+    if len(telefone) > 11:
+        raise ValidationError('O telefone deve ter no máximo 11 caracteres!')
+    if not telefone.isdigit():
+        raise ValidationError('O telefone deve conter apenas números!')
+
+def valida_email(email):
+    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+        raise ValidationError('E-mail inválido!')

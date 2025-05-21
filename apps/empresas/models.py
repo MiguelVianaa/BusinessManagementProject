@@ -7,6 +7,8 @@ class Empresa(models.Model):
     razao_social = models.CharField(max_length=100, unique=True, validators=[validators.valida_razao_social])
     cnpj = models.CharField(max_length=14, unique=True, validators=[validators.valida_cnpj])
     inscricao_estadual = models.CharField(max_length=20, unique=True, validators=[validators.valida_inscricao_estadual])
+    telefone = models.CharField(max_length=15, validators=[validators.valida_telefone], null=True)
+    email = models.EmailField(max_length=100, validators=[validators.valida_email], null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
