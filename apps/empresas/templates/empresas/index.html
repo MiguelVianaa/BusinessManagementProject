@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/empresas/index.css' %}?v={{ request.timestamp }}">
+    <link rel="stylesheet" href="{% static 'css/empresas/index.css' %}">
     <title>Empresas</title>
 </head>
 <body>
@@ -16,24 +16,24 @@
         <table class="empresas-table">
             <tr>
                 <th>Nome</th>
-                <th>Razão Social</th>
-                <th>CNPJ</th>
-                <th>I.E.</th>
-                <th>Ações</th>
+                <th class="razao-social">Razão Social</th>
+                <th class="cnpj">CNPJ</th>
+                <th class="inscricao-estadual">I.E.</th>
+                <th class="acoes">Ações</th>
             </tr>
             {% for empresa in empresas %}
             <tr>
                 <td>{{ empresa.nome }}</td>
-                <td>{{ empresa.razao_social }}</td>
-                <td>{{ empresa.cnpj }}</td>
-                <td>{{ empresa.inscricao_estadual }}</td>
-                <td>
-                    <a class="action-icon" title="Editar">
+                <td class="razao-social">{{ empresa.razao_social }}</td>
+                <td class="cnpj">{{ empresa.cnpj }}</td>
+                <td class="inscricao-estadual">{{ empresa.inscricao_estadual }}</td>
+                <td class="acoes">
+                    <a href="{% url 'editar' empresa.id %}" class="action-icon" title="Editar">
                         <svg height="18" width="30" viewBox="0 0 20 20" fill="#1976d2">
                             <path d="M2 14.5V18h3.5l10-10-3.5-3.5-10 10zm15.7-9.3a1 1 0 0 0 0-1.4l-2.5-2.5a1 1 0 0 0-1.4 0l-1.8 1.8 3.5 3.5 1.7-1.4z"/>
                         </svg>
                     </a>
-                    <a class="action-icon" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir?');">
+                    <a class="action-icon" title="Excluir" data-id="{{ empresa.id }}">
                         <svg height="18" width="30" viewBox="0 0 20 20" fill="#d32f2f">
                             <path d="M6 7v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V7H6zm2-3V3a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h5v2H3V4h5zm2-1h0"/>
                         </svg>

@@ -155,3 +155,9 @@ input[type="text"]:focus {
         left: 10px;
     }
 }
+
+.form-error, .form-errors {
+    color: #d32f2f;
+    font-size: 0.96rem;
+    margin-top: 2px;
+}
