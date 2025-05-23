@@ -7,7 +7,7 @@ from .forms import EmpresaForm
 
 def index(request):
     return render(request, 'empresas/index.html', {
-        'empresas': Empresa.objects.all()
+        'empresas': Empresa.objects.filter(deleted_at__isnull=True)
     })
 
 
@@ -67,5 +67,16 @@ def update(request, id):
     form = EmpresaForm(instance=empresa)
     return render(request, 'empresas/form.html', {
         'form': form,
+        'empresa': empresa
+    })
+
+def destroy(request, id):
+    empresa = get_object_or_404(Empresa, id=id)
+
+    if request.method == 'POST':
+        empresa.delete()
+        return redirect('empresas')
+
+    return render(request, 'empresas/destroy.html', {
         'empresa': empresa
     })
