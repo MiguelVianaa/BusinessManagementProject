@@ -73,10 +73,7 @@ def update(request, id):
 def destroy(request, id):
     empresa = get_object_or_404(Empresa, id=id)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and empresa:
         empresa.delete()
-        return redirect('empresas')
 
-    return render(request, 'empresas/destroy.html', {
-        'empresa': empresa
-    })
+    return redirect('empresas')
