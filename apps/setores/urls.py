@@ -1,7 +1,7 @@
 from django.urls import path
-from apps.empresas.views import index, show, store, edit, update, destroy
+from apps.setores.views import index, show, store, edit, update, destroy
 
-app_name = 'empresas'
+app_name = 'setores'
 
 urlpatterns = [
     path('', index, name='index'),

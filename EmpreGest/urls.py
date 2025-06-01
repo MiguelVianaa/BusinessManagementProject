@@ -24,7 +24,9 @@ urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     path('admin/', admin.site.urls),
 
-    path('', include('apps.home.urls')),
-    path('', include('apps.empresas.urls')),
+    path('', include('apps.home.urls')), # HOME
+
+    path('empresas/', include(('apps.empresas.urls', 'empresas'), namespace='empresas')),
+    path('setores/', include(('apps.setores.urls', 'setores'), namespace='setores')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

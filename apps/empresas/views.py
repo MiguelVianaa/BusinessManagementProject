@@ -14,7 +14,7 @@ def index(request):
 def show(request):
     return render(request, 'empresas/form.html',{
         'form': EmpresaForm(),
-        'form_action': reverse('store'),
+        'form_action': reverse('empresas:store'),
     })
 
 
@@ -25,16 +25,13 @@ def store(request):
         if form.is_valid():
             with transaction.atomic():
                 form.save()
-            return redirect('empresas')
+            return redirect('empresas:index')
         else:
             return render(request, 'empresas/form.html', {
                 'form': form
             })
 
-    form = EmpresaForm()
-    return render(request, 'empresas/form.html', {
-        'form': form
-    })
+    return redirect('empresas:index')
 
 
 def edit(request, id):
@@ -43,7 +40,7 @@ def edit(request, id):
 
     return render(request, 'empresas/form.html', {
         'form': form,
-        'form_action': reverse('update', args=[id]),
+        'form_action': reverse('empresas:update', args=[id]),
         'empresa': empresa
     })
 
@@ -57,18 +54,15 @@ def update(request, id):
         if form.is_valid():
             with transaction.atomic():
                 form.save()
-            return redirect('empresas')
+            return redirect('empresas:index')
         else:
             return render(request, 'empresas/form.html', {
                 'form': form,
                 'empresa': empresa
             })
 
-    form = EmpresaForm(instance=empresa)
-    return render(request, 'empresas/form.html', {
-        'form': form,
-        'empresa': empresa
-    })
+    return redirect('empresas:index')
+
 
 def destroy(request, id):
     empresa = get_object_or_404(Empresa, id=id)
@@ -76,4 +70,4 @@ def destroy(request, id):
     if request.method == 'POST' and empresa:
         empresa.delete()
 
-    return redirect('empresas')
+    return redirect('empresas:index')

@@ -6,47 +6,43 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'empresas/css/form.css' %}?={{ request.timestamp }}">
-    <title>{% if empresa %} Edição {% else %} Cadastro {% endif %}</title>
+    <title> Empresas - {% if empresa %} Editar {% else %} Cadastro {% endif %} </title>
 </head>
 <body>
     <div class="div_principal">
-        <a href="{% url 'empresas' %}" class="btn-voltar" title="Voltar para listagem">&#8592; Voltar</a>
+        <a href="{% url 'empresas:index' %}" class="btn-voltar" title="Voltar para listagem">&#8592; Voltar</a>
         <h2 class="cabecalho">Empresas</h2>
-        <h3> {% if empresa %} Edição {% else %} Cadastro {% endif %} </h3>
+        <h3> {% if empresa %} Editar {% else %} Cadastro {% endif %} </h3>
         <form action="{{ form_action }}" method="POST">
             {% csrf_token %}
-            {% if form.non_field_errors %}
-                <div class="form-errors">{{ form.non_field_errors }}</div>
-            {% endif %}
+            {% if form.non_field_errors %} <div class="form-errors">{{ form.non_field_errors }}</div> {% endif %}
 
             <div class="form-row form-row--2col">
-                <label for="nome">Nome Fantasia
-                    <input name="nome" type="text" placeholder="Nome da empresa" value="{% if empresa.nome %}{{ empresa.nome }}{% endif %}">
-                    {% if form.nome.errors %}
-                        <div class="form-error">{{ form.nome.errors.0 }}</div>
-                    {% endif %}
+                <label for="nome"> Nome Fantasia
+                    <input name="nome" type="text" placeholder="Digite o nome da empresa" value="{% if empresa.nome %}{{ empresa.nome }}{% endif %}">
+                    {% if form.nome.errors %} <div class="form-error">{{ form.nome.errors.0 }}</div> {% endif %}
                 </label>
-                <label for="razao_social">Razão Social
-                    <input name="razao_social" type="text" placeholder="Razão Social" value="{% if empresa.razao_social %}{{ empresa.razao_social }}{% endif %}">
+                <label for="razao_social"> Razão Social
+                    <input name="razao_social" type="text" placeholder="digite a razão social" value="{% if empresa.razao_social %}{{ empresa.razao_social }}{% endif %}">
                     {% if form.razao_social.errors %} <div class="form-error">{{ form.razao_social.errors.0 }}</div> {% endif %}
                 </label>
-                <label for="cnpj">CNPJ
-                    <input name="cnpj" type="text" placeholder="CNPJ" maxlength="14" value="{% if empresa.cnpj %}{{ empresa.cnpj }}{% endif %}">
+                <label for="cnpj"> CNPJ
+                    <input name="cnpj" type="text" placeholder="digite o CNPJ" maxlength="14" value="{% if empresa.cnpj %}{{ empresa.cnpj }}{% endif %}">
                     {% if form.cnpj.errors %} <div class="form-error">{{ form.cnpj.errors.0 }}</div> {% endif %}
                 </label>
             </div>
 
             <div class="form-row form-row--2col">
-                <label for="inscricao_estadual">IE
-                    <input type="text" name="inscricao_estadual" placeholder="Inscrição Estadual" value="{% if empresa.inscricao_estadual %}{{ empresa.inscricao_estadual }}{% endif %}">
+                <label for="inscricao_estadual"> IE
+                    <input type="text" name="inscricao_estadual" placeholder="digite a inscrição estadual" value="{% if empresa.inscricao_estadual %}{{ empresa.inscricao_estadual }}{% endif %}">
                     {% if form.inscricao_estadual.errors %} <div class="form-error">{{ form.inscricao_estadual.errors.0 }}</div> {% endif %}
                 </label>
-                <label for="telefone">Telefone
-                    <input name="telefone" type="text" placeholder="Telefone" value="{% if empresa.telefone %}{{ empresa.telefone }}{% endif %}">
+                <label for="telefone"> Telefone
+                    <input name="telefone" type="text" placeholder="digite o telefone" value="{% if empresa.telefone %}{{ empresa.telefone }}{% endif %}">
                     {% if form.telefone.errors %} <div class="form-error">{{ form.telefone.errors.0 }}</div> {% endif %}
                 </label>
-                <label for="email">E-mail
-                    <input name="email" type="text" placeholder="Email" value="{% if empresa.email %}{{ empresa.email }}{% endif %}">
+                <label for="email"> E-mail
+                    <input name="email" type="text" placeholder="digite o e-mail" value="{% if empresa.email %}{{ empresa.email }}{% endif %}">
                     {% if form.email.errors %} <div class="form-error">{{ form.email.errors.0 }}</div> {% endif %}
                 </label>
             </div>
