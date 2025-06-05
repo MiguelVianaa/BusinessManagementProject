@@ -28,5 +28,6 @@ urlpatterns = [
 
     path('empresas/', include(('apps.empresas.urls', 'empresas'), namespace='empresas')),
     path('setores/', include(('apps.setores.urls', 'setores'), namespace='setores')),
+    # path('api/setores/', include('apps.setores.urls_api')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

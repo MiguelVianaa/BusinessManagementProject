@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
+from rest_framework import viewsets
+from .serializers import SetorSerializer
 from django.urls import reverse
 from .forms import SetorForm
 from .models import Setor
+
+class SetorViewSet(viewsets.ModelViewSet):
+    queryset = Setor.objects.all()
+    serializer_class = SetorSerializer
+
 
 def index(request):
     return render(request, 'setores/index.html', {
