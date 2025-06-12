@@ -38,11 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    'corsheaders',
     'apps.home',
     'apps.empresas',
     'apps.colaboradores',
     'apps.setores',
     'apps.cargos',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
 ]
 
 MIDDLEWARE = [
