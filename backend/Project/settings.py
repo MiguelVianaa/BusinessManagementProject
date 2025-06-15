@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'corsheaders',
-    'apps.home',
     #'apps.empresas',
     #'apps.colaboradores',
     #'apps.setores',

@@ -19,8 +19,8 @@ class Setor(models.Model):
         return self.nome
 
     def delete(self, *args, **kwargs):
-        from apps.colaboradores.models import Colaborador
+        from ..models import Setor
 
-        Colaborador.objects.filter(setor=self).update(setor=None)
+        Setor.objects.filter(setor=self).update(setor=None)
         self.deleted_at = timezone.now()
         self.save()

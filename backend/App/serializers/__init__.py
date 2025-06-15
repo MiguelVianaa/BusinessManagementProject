@@ -1,1 +1,4 @@
 from .setor_serializers import SetorSerializer
+from .empresa_serializers import EmpresaSerializer
+from .cargo_serializers import CargoSerializer
+from .colaborador_serializers import ColaboradorSerializer
