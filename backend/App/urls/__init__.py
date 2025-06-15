@@ -6,6 +6,6 @@ router = routers.DefaultRouter()
 router.register(r'setores', SetorViewSet, basename='setor-api')
 
 urlpatterns = [
-    path('setores/', include('App.urls.setor_urls')),
+    path('api/setores/', include('App.urls.setor_urls')),
     path('api/', include(router.urls)),
 ]

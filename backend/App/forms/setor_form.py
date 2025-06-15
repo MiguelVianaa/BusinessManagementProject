@@ -1,7 +1,7 @@
 from django import forms
-from ..models import setor
+from ..models import Setor
 
 class SetorForm(forms.ModelForm):
     class Meta:
-        model = setor
+        model = Setor
         fields = ['nome', 'descricao']
