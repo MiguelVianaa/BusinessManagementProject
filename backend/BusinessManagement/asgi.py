@@ -1,5 +1,5 @@
 """
-ASGI config for EmpreGest project.
+ASGI config for BusinessManagement project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
