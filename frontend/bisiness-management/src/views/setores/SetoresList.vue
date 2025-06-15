@@ -9,7 +9,7 @@
       </template>
 
       <DataTable
-          :api-route="'/api/setores/'"
+          :api-route="'/api/setores/datatable/'"
           :columns="columns"
           :refresh-trigger="refreshTrigger"
           @edit="handleEdit"

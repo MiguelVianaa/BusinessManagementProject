@@ -45,7 +45,7 @@ const tableOptions = {
   serverSide: true,
   processing: true,
   ajax: {
-    dataSrc: '',
+    dataSrc: 'data',
     url: props.apiRoute,
     error: (error: any) => {
       console.error('Erro ao buscar dados: ', error)
@@ -60,12 +60,17 @@ const tableOptions = {
     {
       data: null,
       orderable: false,
-      render: function(data: any, type: string, row: any) {
-        let buttons = "<div style=\"display: flex; gap: 0.5rem; justify-content: center;\">";
-        buttons += `<button class="btn btn-sm btn-outline-primary edit-btn" title="Editar"> <i class="bi bi-pencil-square"></i> </button>`
-        buttons += `<button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir"> <i class="bi bi-trash-fill"></i> </button>`
-        buttons += "</div>";
-        return buttons;
+      render: function (data: any, type: string, row: any) {
+        return `
+          <div style="display: flex; gap: 0.5rem; justify-content: center;">
+            <button class="btn btn-sm btn-outline-primary edit-btn" title="Editar">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
+        `;
       }
     }
   ],
