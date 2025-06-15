@@ -14,7 +14,7 @@ class Empresa(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
-    setores = models.ManyToManyField('setores.Setor', through='EmpresaSetor', related_name='empresas')
+    setores = models.ManyToManyField('App.Setor', through='EmpresaSetor', related_name='empresas')
 
     class Meta:
         db_table = 'empresas'
@@ -31,7 +31,7 @@ class Empresa(models.Model):
 
 class EmpresaSetor(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='empresa_setores')
-    setor = models.ForeignKey('setores.Setor', on_delete=models.CASCADE, related_name='setor_empresas')
+    setor = models.ForeignKey('App.Setor', on_delete=models.CASCADE, related_name='setor_empresas')
 
     class Meta:
         db_table = 'empresa_setores'

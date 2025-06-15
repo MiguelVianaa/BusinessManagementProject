@@ -12,7 +12,7 @@ class EmpresaViewSet(viewsets.ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
 
-def index(request):
+def datatable(request):
     return render(request, 'empresas/index.html', {
         'empresas': Empresa.objects.filter(deleted_at__isnull=True)
     })
