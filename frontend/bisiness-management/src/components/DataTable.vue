@@ -61,15 +61,16 @@ const tableOptions = {
       data: null,
       orderable: false,
       render: function(data: any, type: string, row: any) {
-        let buttons = "";
-        buttons += `<button class="btn btn-sm btn-outline-primary edit-btn" title="Editar"> Editar </button>`
-        buttons += `<button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir"> Excluir </button>`
+        let buttons = "<div style=\"display: flex; gap: 0.5rem; justify-content: center;\">";
+        buttons += `<button class="btn btn-sm btn-outline-primary edit-btn" title="Editar"> <i class="bi bi-pencil-square"></i> </button>`
+        buttons += `<button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir"> <i class="bi bi-trash-fill"></i> </button>`
+        buttons += "</div>";
         return buttons;
       }
     }
   ],
   language: {
-    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+    url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
   },
   dom: 'Bfrtip',
   buttons: [
@@ -125,17 +126,16 @@ onMounted(() => {
 
 .btn-sm {
   padding: 0.25rem 0.5rem;
-  margin: 0 0.25rem;
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
+  margin: 0;
 }
 
-.btn-outline-primary:hover {
-  background-color: #e8f0fe;
-}
-
-.btn-outline-danger:hover {
-  background-color: #fee8e8;
+th:last-child,
+td:last-child {
+  text-align: center;
+  vertical-align: middle;
+  min-width: 110px;
 }
 </style>
