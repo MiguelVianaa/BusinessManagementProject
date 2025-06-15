@@ -9,7 +9,7 @@
       </template>
 
       <DataTable
-          :api-route="'/api/setores'"
+          :api-route="'/api/setores/'"
           :columns="columns"
           :refresh-trigger="refreshTrigger"
           @edit="handleEdit"
@@ -32,7 +32,7 @@ const refreshTrigger = ref(0)
 
 const columns = [
   { key: 'nome', label: 'Setor'},
-  { key: 'Descricao', label: 'Descrição'},
+  { key: 'descricao', label: 'Descrição'},
 ]
 
 const handleNewSetor = () => {
@@ -78,7 +78,4 @@ const handleDelete = async (item: any) => {
   background-color: #45a049;
 }
 
-.setores-list {
-  margin-top: 2rem;
-}
 </style>

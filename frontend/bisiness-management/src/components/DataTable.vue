@@ -62,8 +62,8 @@ const tableOptions = {
       orderable: false,
       render: function(data: any, type: string, row: any) {
         let buttons = "";
-        buttons += `<button class="btn btn-sm btn-outline-primary edit-btn" title="Editar"> ✏️ </button>`
-        buttons += `<button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir"> 🗑️ </button>`
+        buttons += `<button class="btn btn-sm btn-outline-primary edit-btn" title="Editar"> Editar </button>`
+        buttons += `<button class="btn btn-sm btn-outline-danger delete-btn" title="Excluir"> Excluir </button>`
         return buttons;
       }
     }
