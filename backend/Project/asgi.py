@@ -1,5 +1,5 @@
 """
-ASGI config for BusinessManagement project.
+ASGI config for Project project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
