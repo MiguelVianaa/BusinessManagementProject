@@ -9,11 +9,20 @@
       </template>
 
       <DataTable
-          :api-route="'/api/setores/datatable/'"
-          :columns="columns"
-          :refresh-trigger="refreshTrigger"
-          @edit="handleEdit"
-          @delete="handleDelete"
+        :api-route="'/api/setores/datatable/'"
+        :columns="columns"
+        :refresh-trigger="refreshTrigger"
+        @edit="handleEdit"
+        :delete-config="{
+          route: (item) => `/api/setores/${item.id}`,
+          title: 'Tem certeza que deseja excluir este setor?',
+          msg: 'Você não poderá reverter essa ação.',
+          confirmButtonName: 'Excluir',
+          cancelButtonName: 'Cancelar',
+          msgFailed: 'Erro ao excluir setor.',
+          getId: (item) => item.id,
+          getName: (item) => item.nome
+        }"
       />
     </PageContainer>
   </div>
@@ -25,7 +34,6 @@ import { useRouter } from "vue-router";
 import Header from "@/components/Header.vue";
 import PageContainer from "@/components/PageContainer.vue";
 import DataTable from "@/components/DataTable.vue";
-import axios from 'axios';
 
 const router = useRouter()
 const refreshTrigger = ref(0)
@@ -42,18 +50,6 @@ const handleNewSetor = () => {
 const handleEdit = (item: any) => {
   router.push(`/setores/editar/${item.id}`)
 }
-
-const handleDelete = async (item: any) => {
-  if (confirm('Deseja realmente excluir este setor?')) {
-    try {
-      await axios.delete(`/api/setores/${item.id}`);
-      refreshTrigger.value++;
-    } catch (error) {
-      console.error('Erro ao excluir:', error);
-      alert('Erro ao excluir o setor');
-    }
-  }
-};
 
 </script>
 
