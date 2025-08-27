@@ -19,8 +19,11 @@ class Setor(models.Model):
         return self.nome
 
     def delete(self, *args, **kwargs):
-        from ..models import Setor
+        from ..models import Colaborador, EmpresaSetor
+        from django.utils import timezone
 
-        Setor.objects.filter(setor=self).update(setor=None)
+        Colaborador.objects.filter(setor=self).update(setor=None)
+        EmpresaSetor.objects.filter(setor=self).delete()
+
         self.deleted_at = timezone.now()
         self.save()

@@ -59,7 +59,9 @@ const tableOptions = {
 };
 
 function onDeleted() {
-  if (dataTableRef.value) dataTableRef.value.dt.ajax.reload();
+  if (dataTableRef.value) {
+    dataTableRef.value.dt.ajax.reload();
+  }
 }
 
 function onDeleteError(e: any) {

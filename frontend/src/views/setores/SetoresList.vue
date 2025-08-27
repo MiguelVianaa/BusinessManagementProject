@@ -14,7 +14,7 @@
         :refresh-trigger="refreshTrigger"
         @edit="handleEdit"
         :delete-config="{
-          route: (item) => `/api/setores/destroy/${item.id}`,
+          route: (id) => `/api/setores/${id}/`,
           title: 'Tem certeza que deseja excluir este setor?',
           msg: 'Você não poderá reverter essa ação.',
           confirmButtonName: 'Excluir',

@@ -1,5 +1,5 @@
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Q
@@ -50,7 +50,7 @@ class SetorViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
-        return Response({"success": True}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"success": True}, status=status.HTTP_200_OK)
 
     # GET /api/setores/datatable/ → endpoint para DataTables
     @action(detail=False, methods=['get'])
