@@ -1,14 +1,16 @@
 import swal from 'sweetalert2';
 import axios from 'axios';
+import {id} from "vuetify/locale";
 
 interface DeleteConfig {
-    route: (item: any) => string;
+    route: (id: number) => string;
     title?: string;
     msg?: string;
     confirmButtonName?: string;
     cancelButtonName?: string;
     msgSuccess?: string;
     msgFailed?: string;
+    getId?: (item: any) => number;
     getName?: (item: any) => string;
 }
 
@@ -34,8 +36,8 @@ export function useConfirmDelete(item: any, config: DeleteConfig): Promise<void>
 
             if (result.isConfirmed) {
                 try {
-
-                    await axios.delete(config.route(item));
+                    const id = config.getId ? config.getId(item) : item.id;
+                    await axios.delete(config.route(id));
 
                     swal.fire({
                         icon: 'success',
