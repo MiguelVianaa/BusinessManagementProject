@@ -19,7 +19,6 @@ import { DataTable } from "datatables.net-vue3";
 import DataTablesCore from 'datatables.net-bs5';
 import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
 import 'datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css';
-// 1. Importe o novo composable
 import { useConfirmDelete } from "@/composables/useConfirmDelete";
 
 DataTable.use(DataTablesCore);
@@ -29,16 +28,14 @@ interface Props {
   apiRoute: string,
   columns: Column[],
   refreshTrigger?: number,
-  deleteConfig: any // A prop continua aqui, perfeita!
+  deleteConfig: any
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits(['edit', 'error']); // O emit 'delete' não é mais necessário
+const emit = defineEmits(['edit', 'error']);
 const dataTableRef = ref();
 
-// O tableOptions permanece o mesmo...
 const tableOptions = {
-  // ... (todo o seu objeto de opções aqui, sem alterações)
   serverSide: true,
   processing: true,
   ajax: { dataSrc: 'data', url: props.apiRoute, error: (error: any) => { console.error('Erro ao buscar dados: ', error); emit('error', error) } },
@@ -50,17 +47,22 @@ const tableOptions = {
       }
     }
   ],
+  columnDefs: [
+    {
+      targets: 0,
+      visible: false,
+      searchable: false
+    }
+  ],
   language: { url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json' },
   dom: 'Bfrtip', buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], pageLength: 10, responsive: true,
 };
 
-// 2. A lógica de callback continua a mesma, mas agora será chamada pelo composable
 function onDeleted() {
   if (dataTableRef.value) dataTableRef.value.dt.ajax.reload();
 }
 
 function onDeleteError(e: any) {
-  // Não tratamos o 'cancelled' como um erro real
   if (e !== 'cancelled') {
     emit('error', e);
   }
@@ -69,7 +71,6 @@ function onDeleteError(e: any) {
 onMounted(() => {
   const table = dataTableRef.value.dt;
 
-  // O evento de 'edit' não muda
   table.on('click', 'button.edit-btn', function (e: MouseEvent) {
     const target = e.target as HTMLElement;
     const tr = target.closest('tr');
@@ -79,26 +80,21 @@ onMounted(() => {
     }
   });
 
-  // 3. ✨ AQUI ESTÁ A MÁGICA ✨
-  // O evento de 'delete' agora chama o nosso composable
   table.on('click', 'button.delete-btn', function (e: MouseEvent) {
     const tr = (e.target as HTMLElement).closest('tr');
     if (tr) {
       const rowData = table.row(tr).data();
-      // Chama o composable passando o item e o config recebido via props
+
       useConfirmDelete(rowData, props.deleteConfig)
           .then(() => {
-            // SUCEsSO: A tabela é recarregada
             onDeleted();
           })
           .catch((error) => {
-            // ERRO: O erro é emitido (ou ignorado se for apenas um cancelamento)
             onDeleteError(error);
           });
     }
   });
 
-  // Os watchers não mudam
   watch(() => props.refreshTrigger, () => { if (dataTableRef.value) { dataTableRef.value.dt.ajax.reload() } });
   watch(() => props.apiRoute, (newRoute) => { if (dataTableRef.value) { dataTableRef.value.dt.ajax.url(newRoute).load() } });
 });

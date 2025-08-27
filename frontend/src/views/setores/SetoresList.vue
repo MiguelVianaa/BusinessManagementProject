@@ -14,7 +14,7 @@
         :refresh-trigger="refreshTrigger"
         @edit="handleEdit"
         :delete-config="{
-          route: (item) => `/api/setores/${item.id}`,
+          route: (item) => `/api/setores/destroy/${item.id}`,
           title: 'Tem certeza que deseja excluir este setor?',
           msg: 'Você não poderá reverter essa ação.',
           confirmButtonName: 'Excluir',
@@ -39,6 +39,7 @@ const router = useRouter()
 const refreshTrigger = ref(0)
 
 const columns = [
+  { key: 'id', label: 'ID'},
   { key: 'nome', label: 'Setor'},
   { key: 'descricao', label: 'Descrição'},
 ]

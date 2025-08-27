@@ -56,6 +56,8 @@
 <script setup lang="ts">
 import { ref, watch, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const props = defineProps<{
   config: any,
@@ -88,13 +90,12 @@ async function confirm() {
 </script>
 
 <style scoped>
-/* CSS DA ANIMAÇÃO (O mesmo que funcionou antes) */
 .sa-icon {
   width: 80px;
   height: 80px;
-  border: 4px solid #F44336; /* Cor de erro do Vuetify */
+  border: 4px solid #F44336;
   border-radius: 50%;
-  margin: 0 auto 16px; /* Adiciona espaço abaixo do ícone */
+  margin: 0 auto 16px;
   position: relative;
   box-sizing: content-box;
   animation: scale-in 0.3s forwards;
