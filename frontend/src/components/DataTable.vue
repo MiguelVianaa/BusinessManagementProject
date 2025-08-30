@@ -19,7 +19,7 @@ import { DataTable } from "datatables.net-vue3";
 import DataTablesCore from 'datatables.net-bs5';
 import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
 import 'datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css';
-import { useConfirmDelete } from "@/composables/useConfirmDelete";
+import { confirmDelete } from "@/composables/confirmDelete.ts";
 
 DataTable.use(DataTablesCore);
 
@@ -87,7 +87,7 @@ onMounted(() => {
     if (tr) {
       const rowData = table.row(tr).data();
 
-      useConfirmDelete(rowData, props.deleteConfig)
+      confirmDelete(rowData, props.deleteConfig)
           .then(() => {
             onDeleted();
           })

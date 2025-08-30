@@ -13,16 +13,7 @@
         :columns="columns"
         :refresh-trigger="refreshTrigger"
         @edit="handleEdit"
-        :delete-config="{
-          route: (id) => `/api/setores/${id}/`,
-          title: 'Tem certeza que deseja excluir este setor?',
-          msg: 'Você não poderá reverter essa ação.',
-          confirmButtonName: 'Excluir',
-          cancelButtonName: 'Cancelar',
-          msgFailed: 'Erro ao excluir setor.',
-          getId: (item) => item.id,
-          getName: (item) => item.nome
-        }"
+        :delete-config="deleteConfig"
       />
     </PageContainer>
   </div>
@@ -50,6 +41,27 @@ const handleNewSetor = () => {
 
 const handleEdit = (item: any) => {
   router.push(`/setores/editar/${item.id}`)
+}
+
+interface SetorItem {
+  id: number;
+  nome :string;
+  [key: string]: any
+}
+
+const route = (id: number) => `/api/setores/${id}/`
+const getId = (item: SetorItem) => item.id
+const getName = (item: SetorItem) => item.nome
+
+const deleteConfig = {
+  route,
+  title: 'Tem certeza que deseja excluir este setor?',
+  msg: 'Você não poderá reverter essa ação.',
+  confirmButtonName: 'Excluir',
+  cancelButtonName: 'Cancelar',
+  msgFailed: 'Erro ao excluir setor.',
+  getId,
+  getName
 }
 
 </script>

@@ -2,14 +2,14 @@
   <header class="header">
     <img src="@/assets/logo.png" alt="Business Management" class="logo">
     <div class="auth-buttons">
-      <button @click="navigateToLogin" class="btn btn-login">Login</button>
-      <button @click="navigateToRegister" class="btn btn-register">Registrar</button>
+      <!-- <button @click="navigateToLogin" class="btn btn-login">Login</button>-->
+      <!-- <button @click="navigateToRegister" class="btn btn-register">Registrar</button>-->
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import {useRouter} from 'vue-router'
 
 const router = useRouter()
 
@@ -25,7 +25,7 @@ const navigateToRegister = () => router.push('/register')
   align-items: center;
   padding: 1.5rem 4rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 80px;
 }
 

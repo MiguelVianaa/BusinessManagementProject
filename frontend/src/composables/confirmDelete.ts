@@ -14,7 +14,7 @@ interface DeleteConfig {
     getName?: (item: any) => string;
 }
 
-export function useConfirmDelete(item: any, config: DeleteConfig): Promise<void> {
+export function confirmDelete(item: any, config: DeleteConfig): Promise<void> {
 
     return new Promise((resolve, reject) => {
 
