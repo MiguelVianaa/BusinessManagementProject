@@ -20,7 +20,7 @@
 
   <ModalEditContainer v-model="modalOpen" :api-route="editId !== null ? `/api/setores/${editId}/` : ''" :fetch-on-open="true" title="Editar Setor" width="70%">
     <template #default="{ data, loading, error, close, refresh }">
-      <SetorEditForm v-if="data" :model="data" @submit="salvarSetor" />
+      <SetorForm v-if="data" :model="data" @submit="salvarSetor" />
       <div v-else-if="loading">Carregando...</div>
       <div v-else-if="error">Erro ao carregar dados.</div>
     </template>
@@ -34,7 +34,7 @@ import Header from "@/components/Header.vue";
 import PageContainer from "@/components/PageContainer.vue";
 import DataTable from "@/components/DataTable.vue";
 import ModalEditContainer from "@/components/ModalEditContainer.vue";
-import SetorEditForm from "@/views/setores/SetorEditForm.vue";
+import SetorForm from "@/views/setores/SetorForm.vue";
 
 const router = useRouter()
 const refreshTrigger = ref(0)
