@@ -1,6 +1,6 @@
 <template>
   <div class="setores-view">
-    <Header />
+    <Header/>
     <PageContainer title="Setores" :showBackButton="true">
       <template #actions>
         <button class="btn-primary" @click="handleNewSetor">
@@ -9,34 +9,40 @@
       </template>
 
       <DataTable
-        :api-route="'/api/setores/datatable/'"
-        :columns="columns"
-        :refresh-trigger="refreshTrigger"
-        @edit="handleEdit"
-        :delete-config="deleteConfig"
+          :api-route="'/api/setores/datatable/'"
+          :columns="columns"
+          :refresh-trigger="refreshTrigger"
+          @edit="handleEdit"
+          :delete-config="deleteConfig"
       />
     </PageContainer>
   </div>
 
-  <ModalEditContainer v-model="modalOpen" :api-route="editId !== null ? `/api/setores/${editId}/` : ''" title="Editar Setor">
+  <ModalEditContainer v-model="modalOpen" :api-route="editId !== null ? `/api/setores/${editId}/` : ''" :fetch-on-open="true" title="Editar Setor" width="70%">
+    <template #default="{ data, loading, error, close, refresh }">
+      <SetorEditForm v-if="data" :model="data" @submit="salvarSetor" />
+      <div v-else-if="loading">Carregando...</div>
+      <div v-else-if="error">Erro ao carregar dados.</div>
+    </template>
   </ModalEditContainer>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from "vue-router";
+import {ref} from 'vue';
+import {useRouter} from "vue-router";
 import Header from "@/components/Header.vue";
 import PageContainer from "@/components/PageContainer.vue";
 import DataTable from "@/components/DataTable.vue";
 import ModalEditContainer from "@/components/ModalEditContainer.vue";
+import SetorEditForm from "@/views/setores/SetorEditForm.vue";
 
 const router = useRouter()
 const refreshTrigger = ref(0)
 
 const columns = [
-  { key: 'id', label: 'ID'},
-  { key: 'nome', label: 'Setor'},
-  { key: 'descricao', label: 'Descrição'},
+  {key: 'id', label: 'ID'},
+  {key: 'nome', label: 'Setor'},
+  {key: 'descricao', label: 'Descrição'},
 ]
 
 const handleNewSetor = () => {
@@ -45,7 +51,7 @@ const handleNewSetor = () => {
 
 interface SetorItem {
   id: number;
-  nome :string;
+  nome: string;
   [key: string]: any
 }
 
@@ -65,10 +71,9 @@ const deleteConfig = {
 }
 
 const modalOpen = ref(false)
-const editId = ref<number|null>(null)
+const editId = ref<number | null>(null)
 
 function handleEdit(item: any) {
-  debugger
   editId.value = item.id
   modalOpen.value = true
 }

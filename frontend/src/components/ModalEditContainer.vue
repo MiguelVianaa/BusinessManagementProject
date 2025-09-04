@@ -1,11 +1,8 @@
 <template>
-  <v-dialog v-model="open" :max-width="maxWidth" persistent>
+  <v-dialog v-model="open" :width="width">
     <v-card>
-      <v-card-title class="d-flex align-center justify-space-between">
-        <span class="text-h6" style="flex: 1; text-align: left;">{{ title }}</span>
-        <v-btn icon @click="close" class="close-btn" aria-label="Fechar" variant="plain">
-          x
-        </v-btn>
+      <v-card-title class="d-flex justify-center">
+        <span class="text-h5">{{ title }}</span>
       </v-card-title>
       <v-card-text>
         <slot
@@ -27,18 +24,14 @@
 import {ref, watch, defineProps, defineEmits} from 'vue'
 import axios from 'axios'
 
-debugger
-
 const props = defineProps<{
   modelValue: boolean,
   apiRoute: string,
   title?: string,
-  maxWidth?: string | number,
+  width?: string | number,
   fetchOnOpen?: boolean
 }>()
 const emit = defineEmits(['update:modelValue', 'loaded', 'error'])
-
-debugger
 
 const open = ref(props.modelValue)
 const loading = ref(false)
@@ -46,9 +39,10 @@ const error = ref<null | any>(null)
 const data = ref<any>(null)
 
 watch(() => props.modelValue, v => {
-  debugger
   open.value = v
-  if (v && props.fetchOnOpen !== false) fetchData()
+  if (v && props.fetchOnOpen){
+    fetchData();
+  }
 })
 watch(open, v => emit('update:modelValue', v))
 
@@ -57,16 +51,13 @@ async function fetchData() {
   loading.value = true
   error.value = null
   try {
-    debugger
     const res = await axios.get(props.apiRoute)
     data.value = res.data
     emit('loaded', data.value)
   } catch (e) {
-    debugger
     error.value = e
     emit('error', e)
   } finally {
-    debugger
     loading.value = false
   }
 }
@@ -74,18 +65,4 @@ async function fetchData() {
 function close() {
   open.value = false
 }
-
 </script>
-
-<style scoped>
-.close-btn {
-  background: none !important;
-  box-shadow: none !important;
-  margin-left: auto;
-}
-
-.text-error {
-  color: #f44336;
-  text-align: center;
-}
-</style>
