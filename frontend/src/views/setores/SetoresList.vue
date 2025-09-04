@@ -17,6 +17,9 @@
       />
     </PageContainer>
   </div>
+
+  <ModalEditContainer v-model="modalOpen" :api-route="editId !== null ? `/api/setores/${editId}/` : ''" title="Editar Setor">
+  </ModalEditContainer>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +28,7 @@ import { useRouter } from "vue-router";
 import Header from "@/components/Header.vue";
 import PageContainer from "@/components/PageContainer.vue";
 import DataTable from "@/components/DataTable.vue";
+import ModalEditContainer from "@/components/ModalEditContainer.vue";
 
 const router = useRouter()
 const refreshTrigger = ref(0)
@@ -37,10 +41,6 @@ const columns = [
 
 const handleNewSetor = () => {
   router.push('/setores/show')
-}
-
-const handleEdit = (item: any) => {
-  router.push(`/setores/editar/${item.id}`)
 }
 
 interface SetorItem {
@@ -62,6 +62,15 @@ const deleteConfig = {
   msgFailed: 'Erro ao excluir setor.',
   getId,
   getName
+}
+
+const modalOpen = ref(false)
+const editId = ref<number|null>(null)
+
+function handleEdit(item: any) {
+  debugger
+  editId.value = item.id
+  modalOpen.value = true
 }
 
 </script>
